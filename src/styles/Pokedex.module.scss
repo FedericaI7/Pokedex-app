@@ -4,6 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  h5 {
+    font-size: 16px;
+    color: var(--text-g-color);
+  }
 }
 
 .Pokedex {
@@ -18,7 +23,6 @@
 
   h1 {
     font-size: 1.875rem;
-    color: rgb(253, 253, 253);
     padding-bottom: 5px;
     color: var(--name-color);
   }
@@ -63,7 +67,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  // justify-content: center;
   background-color: rgb(255, 244, 244);
   width: 100%;
   height: 100%;
@@ -104,17 +108,18 @@
 .containerInfo {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: 4px;
-  padding: 0;
-  margin: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px;
+  flex-wrap: wrap;
 }
 
 .data {
   display: flex;
   align-items: center;
-  padding: 0;
-  margin: 0;
+  // flex-wrap: wrap;
+  gap: 8px;
   width: 100%;
 }
 
@@ -127,20 +132,13 @@
   color: var(--info-black);
   font-weight: 500;
   flex-wrap: wrap;
-  width: 100%;
 }
 
 .species {
-  width: 200px;
+  width: 100px;
   align-items: center;
   font-size: 16px;
   padding: 0;
   height: 100%;
   margin: 0;
-  width: 100%;
-
-  h5 {
-    font-size: 16px;
-    color: var(--text-g-color);
-  }
 }

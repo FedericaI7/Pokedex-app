@@ -1,4 +1,5 @@
 import styles from "../../styles/Pokedex.module.scss";
+import ProgressBar from "../progressBar";
 
 const BaseStats = ({ pokemon }) => {
   let totalBaseStats = 0;
@@ -14,6 +15,8 @@ const BaseStats = ({ pokemon }) => {
           <div className={styles.species}>
             <h5>{el.stat.name}</h5>
           </div>
+
+          <ProgressBar value={el.base_stat} />
 
           <div className={styles.info}>
             <p>{el.base_stat}</p>

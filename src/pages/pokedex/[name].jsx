@@ -38,10 +38,46 @@ export default function Pokedex() {
     }
   };
 
+  const colorBackPokemon = () => {
+    if (pokemonSpecies.color?.name === "green") {
+      return "#48d0b0";
+    }
+    if (pokemonSpecies.color?.name === "yellow") {
+      return "#ffd970";
+    }
+    if (pokemonSpecies.color?.name === "red") {
+      return "#fb6c6c";
+    }
+    if (pokemonSpecies.color?.name === "blue") {
+      return "#92cbfe";
+    }
+    if (pokemonSpecies.color?.name === "pink") {
+      return "#f0afed";
+    }
+    if (pokemonSpecies.color?.name === "purple") {
+      return "#be58ee";
+    }
+    if (pokemonSpecies.color?.name === "brown") {
+      return "#f47a2e";
+    }
+    if (pokemonSpecies.color?.name === "black") {
+      return "rgb(53, 47, 47)";
+    }
+    if (pokemonSpecies.color?.name === "white") {
+      return "rgb(227, 200, 200)";
+    }
+    if (pokemonSpecies.color?.name === "gray") {
+      return "rgb(168, 168, 168)";
+    }
+  };
+
   return (
     <div className={styles.containerPokedex}>
       {pokemon && pokemonSpecies && (
-        <div className={styles.Pokedex}>
+        <div
+          className={styles.Pokedex}
+          style={{ backgroundColor: colorBackPokemon() }}
+        >
           <h1>
             {pokemon.name?.charAt(0).toUpperCase() + pokemon.name?.slice(1)}
           </h1>

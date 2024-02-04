@@ -14,3 +14,9 @@ a {
 ul {
   list-style-type: none;
 }
+
+:root {
+  --name-color: rgb(253, 253, 253);
+  --text-g-color: rgba(158, 157, 157, 0.918);
+  --info-black: rgb(34, 33, 33);
+}
