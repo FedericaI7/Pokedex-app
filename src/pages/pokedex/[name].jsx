@@ -3,13 +3,15 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import About from "@/components/about";
+import BaseStats from "@/components/baseStats";
+import Moves from "@/components/moves";
 
 export default function Pokedex() {
   const [pokemon, setPokemon] = useState({});
   const [pokemonSpecies, setPokemonSpecies] = useState({});
   const router = useRouter();
   const [actualTab, setActualTab] = useState("About");
-  const [isTabFocus, setIsTabFocus] = useState(true);
 
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${router.query.name}`)
@@ -27,11 +29,12 @@ export default function Pokedex() {
   const onhandleBtn = (tab) => {
     if (tab === "BaseStats") {
       setActualTab("BaseStats");
-      setIsTabFocus((prev) => !prev);
     }
     if (tab === "About") {
       setActualTab("About");
-      setIsTabFocus((prev) => !prev);
+    }
+    if (tab === "Moves") {
+      setActualTab("Moves");
     }
   };
 
@@ -71,7 +74,7 @@ export default function Pokedex() {
             <ul className={styles.navUl}>
               <button onClick={() => onhandleBtn("About")}>
                 <li
-                  className={styles.BaseEl}
+                  className={styles.About}
                   style={
                     actualTab === "About"
                       ? { color: "black", borderBottom: "2px solid red" }
@@ -83,7 +86,7 @@ export default function Pokedex() {
               </button>
               <button onClick={() => onhandleBtn("BaseStats")}>
                 <li
-                  className={styles.BaseEl}
+                  className={styles.BaseStats}
                   style={
                     actualTab === "BaseStats"
                       ? { color: "black", borderBottom: "2px solid red" }
@@ -93,10 +96,24 @@ export default function Pokedex() {
                   Base Stats
                 </li>
               </button>
-              <button>
-                <li className={styles.Moves}>Moves</li>
+              <button onClick={() => onhandleBtn("Moves")}>
+                <li
+                  className={styles.BaseStats}
+                  style={
+                    actualTab === "Moves"
+                      ? { color: "black", borderBottom: "2px solid red" }
+                      : {}
+                  }
+                >
+                  Moves
+                </li>
               </button>
             </ul>
+            {actualTab === "About" && (
+              <About pokemon={pokemon} pokemonSpecies={pokemonSpecies} />
+            )}
+            {actualTab === "BaseStats" && <BaseStats pokemon={pokemon} />}
+            {actualTab === "Moves" && <Moves pokemon={pokemon} />}
           </nav>
         </div>
       )}
