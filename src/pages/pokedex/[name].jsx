@@ -8,6 +8,8 @@ export default function Pokedex() {
   const [pokemon, setPokemon] = useState({});
   const [pokemonSpecies, setPokemonSpecies] = useState({});
   const router = useRouter();
+  const [actualTab, setActualTab] = useState("About");
+  const [isTabFocus, setIsTabFocus] = useState(true);
 
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${router.query.name}`)
@@ -21,6 +23,17 @@ export default function Pokedex() {
       .then((res) => res.json())
       .then((data) => setPokemonSpecies(data));
   }, [router.query.name]);
+
+  const onhandleBtn = (tab) => {
+    if (tab === "BaseStats") {
+      setActualTab("BaseStats");
+      setIsTabFocus((prev) => !prev);
+    }
+    if (tab === "About") {
+      setActualTab("About");
+      setIsTabFocus((prev) => !prev);
+    }
+  };
 
   return (
     <div className={styles.containerPokedex}>
@@ -52,6 +65,39 @@ export default function Pokedex() {
             />
             <span>{"#" + pokemon.order}</span>
           </div>
+
+          <nav className={styles.box}>
+            {/* ---UL NAV ------ ---------------------------------------- */}
+            <ul className={styles.navUl}>
+              <button onClick={() => onhandleBtn("About")}>
+                <li
+                  className={styles.BaseEl}
+                  style={
+                    actualTab === "About"
+                      ? { color: "black", borderBottom: "2px solid red" }
+                      : {}
+                  }
+                >
+                  About
+                </li>
+              </button>
+              <button onClick={() => onhandleBtn("BaseStats")}>
+                <li
+                  className={styles.BaseEl}
+                  style={
+                    actualTab === "BaseStats"
+                      ? { color: "black", borderBottom: "2px solid red" }
+                      : {}
+                  }
+                >
+                  Base Stats
+                </li>
+              </button>
+              <button>
+                <li className={styles.Moves}>Moves</li>
+              </button>
+            </ul>
+          </nav>
         </div>
       )}
     </div>
