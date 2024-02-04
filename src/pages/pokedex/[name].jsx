@@ -68,53 +68,54 @@ export default function Pokedex() {
             />
             <span>{"#" + pokemon.order}</span>
           </div>
-
-          <nav className={styles.box}>
-            {/* ---UL NAV ------ ---------------------------------------- */}
-            <ul className={styles.navUl}>
-              <button onClick={() => onhandleBtn("About")}>
-                <li
-                  className={styles.About}
-                  style={
-                    actualTab === "About"
-                      ? { color: "black", borderBottom: "2px solid red" }
-                      : {}
-                  }
-                >
-                  About
-                </li>
-              </button>
-              <button onClick={() => onhandleBtn("BaseStats")}>
-                <li
-                  className={styles.BaseStats}
-                  style={
-                    actualTab === "BaseStats"
-                      ? { color: "black", borderBottom: "2px solid red" }
-                      : {}
-                  }
-                >
-                  Base Stats
-                </li>
-              </button>
-              <button onClick={() => onhandleBtn("Moves")}>
-                <li
-                  className={styles.BaseStats}
-                  style={
-                    actualTab === "Moves"
-                      ? { color: "black", borderBottom: "2px solid red" }
-                      : {}
-                  }
-                >
-                  Moves
-                </li>
-              </button>
-            </ul>
+          <div className={styles.downSection}>
+            <nav className={styles.nav}>
+              {/* ---UL NAV ------ ---------------------------------------- */}
+              <ul className={styles.navUl}>
+                <button onClick={() => onhandleBtn("About")}>
+                  <li
+                    className={styles.About}
+                    style={
+                      actualTab === "About"
+                        ? { color: "black", borderBottom: "2px solid red" }
+                        : {}
+                    }
+                  >
+                    About
+                  </li>
+                </button>
+                <button onClick={() => onhandleBtn("BaseStats")}>
+                  <li
+                    className={styles.BaseStats}
+                    style={
+                      actualTab === "BaseStats"
+                        ? { color: "black", borderBottom: "2px solid red" }
+                        : {}
+                    }
+                  >
+                    Base Stats
+                  </li>
+                </button>
+                <button onClick={() => onhandleBtn("Moves")}>
+                  <li
+                    className={styles.BaseStats}
+                    style={
+                      actualTab === "Moves"
+                        ? { color: "black", borderBottom: "2px solid red" }
+                        : {}
+                    }
+                  >
+                    Moves
+                  </li>
+                </button>
+              </ul>
+            </nav>
             {actualTab === "About" && (
               <About pokemon={pokemon} pokemonSpecies={pokemonSpecies} />
             )}
             {actualTab === "BaseStats" && <BaseStats pokemon={pokemon} />}
             {actualTab === "Moves" && <Moves pokemon={pokemon} />}
-          </nav>
+          </div>
         </div>
       )}
     </div>

@@ -1,6 +1,6 @@
 .containerPokedex {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,7 +8,8 @@
 
 .Pokedex {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   display: flex;
   padding-top: 2.5rem;
   flex-direction: column;
@@ -58,7 +59,7 @@
 }
 
 // NAV ----
-.box {
+.downSection {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,9 +67,15 @@
   background-color: rgb(255, 244, 244);
   width: 100%;
   height: 100%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 20px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  padding: 20px;
+}
+
+.box {
+  height: 100%;
 }
 
 .navUl {
@@ -98,7 +105,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   gap: 4px;
   padding: 0;
   margin: 0;
@@ -109,6 +115,7 @@
   align-items: center;
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 
 .info {
@@ -120,15 +127,17 @@
   color: var(--info-black);
   font-weight: 500;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .species {
-  width: 120px;
+  width: 200px;
   align-items: center;
   font-size: 16px;
   padding: 0;
   height: 100%;
   margin: 0;
+  width: 100%;
 
   h5 {
     font-size: 16px;
