@@ -6,6 +6,7 @@ import Link from "next/link";
 import About from "@/components/about";
 import BaseStats from "@/components/baseStats";
 import Moves from "@/components/moves";
+import TopPagePokemon from "@/components/topPagePokemon";
 
 export default function Pokedex() {
   const [pokemon, setPokemon] = useState({});
@@ -78,33 +79,9 @@ export default function Pokedex() {
           className={styles.Pokedex}
           style={{ backgroundColor: colorBackPokemon() }}
         >
-          <h1>
-            {pokemon.name?.charAt(0).toUpperCase() + pokemon.name?.slice(1)}
-          </h1>
+          <TopPagePokemon pokemon={pokemon} />
 
-          {/* type */}
-          <div className={styles.containerTypes}>
-            {pokemon.types &&
-              pokemon.types.map((el) => (
-                <p className={styles.type} key={el.type.name}>
-                  {el.type.name}
-                </p>
-              ))}
-          </div>
-          <div className={styles.containerImgandNumber}>
-            <Image
-              className={styles.imgPokemon}
-              src={
-                pokemon.sprites &&
-                pokemon.sprites.other?.["official-artwork"]?.front_default
-              }
-              width={1000}
-              height={1000}
-              alt={pokemon.name + " picture"}
-            />
-            <span>{"#" + pokemon.order}</span>
-          </div>
-          <div className={styles.downSection}>
+          <div className={styles.bottomSection}>
             <nav className={styles.nav}>
               {/* ---UL NAV ------ ---------------------------------------- */}
               <ul className={styles.navUl}>
