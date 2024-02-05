@@ -12,7 +12,7 @@ const BaseStats = ({ pokemon }) => {
     <div className={styles.containerInfo}>
       {pokemon.stats?.map((el) => (
         <div className={styles.data}>
-          <div className={styles.species}>
+          <div className={styles.containerName}>
             <h5>{el.stat.name}</h5>
           </div>
 
@@ -24,7 +24,7 @@ const BaseStats = ({ pokemon }) => {
         </div>
       ))}
       <div className={styles.data}>
-        <div className={styles.species}>
+        <div className={styles.containerName}>
           <h5>Total</h5>
         </div>
         <div className={styles.info}>

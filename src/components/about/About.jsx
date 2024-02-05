@@ -5,7 +5,7 @@ const About = ({ pokemon, pokemonSpecies }) => {
     <div className={styles.containerInfo}>
       {/* Type */}
       <div className={styles.data}>
-        <div className={styles.species}>
+        <div className={styles.containerName}>
           <h5>Type:</h5>
         </div>
         <div className={styles.info}>
@@ -15,7 +15,7 @@ const About = ({ pokemon, pokemonSpecies }) => {
 
       {/* ----Egg groups----- */}
       <div className={styles.data}>
-        <div className={styles.species}>
+        <div className={styles.containerName}>
           <h5>Egg Groups:</h5>
         </div>
         <div className={styles.info}>
@@ -27,7 +27,7 @@ const About = ({ pokemon, pokemonSpecies }) => {
       </div>
       {/* Height */}
       <div className={styles.data}>
-        <div className={styles.species}>
+        <div className={styles.containerName}>
           <h5>Height:</h5>
         </div>
         <div className={styles.info}>
@@ -36,7 +36,7 @@ const About = ({ pokemon, pokemonSpecies }) => {
       </div>
       {/* Weight */}
       <div className={styles.data}>
-        <div className={styles.species}>
+        <div className={styles.containerName}>
           <h5>Weight:</h5>
         </div>
         <div className={styles.info}>
@@ -45,7 +45,7 @@ const About = ({ pokemon, pokemonSpecies }) => {
       </div>
       {/* Abilities */}
       <div className={styles.data}>
-        <div className={styles.species}>
+        <div className={styles.containerName}>
           <h5>Abilities:</h5>
         </div>
         <div className={styles.info}>
