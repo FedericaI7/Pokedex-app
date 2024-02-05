@@ -3,6 +3,15 @@ import styles from "../../styles/Pokedex.module.scss";
 const About = ({ pokemon, pokemonSpecies }) => {
   return (
     <div className={styles.containerInfo}>
+      {/* ---Description--- */}
+      <div>
+        <p className={styles.description}>
+          {pokemonSpecies?.flavor_text_entries
+            ?.find((lang) => lang.language.name === "en")
+            .flavor_text.replace(/\n/g, "\n")
+            .replace(/\f/g, " ")}
+        </p>
+      </div>
       {/* Type */}
       <div className={styles.data}>
         <div className={styles.containerName}>

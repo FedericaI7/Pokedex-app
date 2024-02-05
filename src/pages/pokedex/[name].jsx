@@ -113,7 +113,10 @@ export default function Pokedex() {
                     className={styles.About}
                     style={
                       actualTab === "About"
-                        ? { color: "black", borderBottom: "2px solid red" }
+                        ? {
+                            color: "black",
+                            borderBottom: `2px solid ${colorBackPokemon()}`,
+                          }
                         : {}
                     }
                   >
@@ -125,7 +128,10 @@ export default function Pokedex() {
                     className={styles.BaseStats}
                     style={
                       actualTab === "BaseStats"
-                        ? { color: "black", borderBottom: "2px solid red" }
+                        ? {
+                            color: "black",
+                            borderBottom: `2px solid ${colorBackPokemon()}`,
+                          }
                         : {}
                     }
                   >
@@ -137,7 +143,10 @@ export default function Pokedex() {
                     className={styles.BaseStats}
                     style={
                       actualTab === "Moves"
-                        ? { color: "black", borderBottom: "2px solid red" }
+                        ? {
+                            color: "black",
+                            borderBottom: `2px solid ${colorBackPokemon()}`,
+                          }
                         : {}
                     }
                   >
