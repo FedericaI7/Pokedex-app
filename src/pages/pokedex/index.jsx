@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "../../styles/SearchPokedex.module.scss";
+import styles2 from "@/styles/Pokedex.module.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { IoMenu } from "react-icons/io5";
@@ -78,12 +79,12 @@ export default function Pokedex({ pokemon }) {
           {pokemonData.map((pokemon, index) => (
             <div key={index} className={styles.containerCardPokemongi}>
               {pokemon.sprites && (
-                <div className={styles.cardPokemon}>
+                <div className={styles2.Pokedex}>
                   <Image
                     width={100}
                     height={50}
                     src={pokemon.sprites.other.dream_world.front_default}
-                    alt=""
+                    alt={`image pokemon ${pokemon.name}`}
                   />
                   <h3>{pokemon.name}</h3>
                 </div>

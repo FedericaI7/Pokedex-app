@@ -63,12 +63,12 @@
 }
 
 .containerCardPokemon {
-  background-color: pink;
 }
 
 .cardPokemon {
   display: flex;
   flex-direction: column;
+  background-color: pink;
   gap: 30px;
   margin: 20px;
 }

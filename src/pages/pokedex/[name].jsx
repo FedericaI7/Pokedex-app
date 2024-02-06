@@ -7,6 +7,7 @@ import About from "@/components/about";
 import BaseStats from "@/components/baseStats";
 import Moves from "@/components/moves";
 import TopPagePokemon from "@/components/topPagePokemon";
+import colorBackPokemon from "./colorBackPokemon";
 
 export default function PokedexDynamic() {
   const [pokemon, setPokemon] = useState({});
@@ -39,39 +40,6 @@ export default function PokedexDynamic() {
     }
   };
 
-  const colorBackPokemon = () => {
-    if (pokemonSpecies.color?.name === "green") {
-      return "#48d0b0";
-    }
-    if (pokemonSpecies.color?.name === "yellow") {
-      return "#ffd970";
-    }
-    if (pokemonSpecies.color?.name === "red") {
-      return "#fb6c6c";
-    }
-    if (pokemonSpecies.color?.name === "blue") {
-      return "#92cbfe";
-    }
-    if (pokemonSpecies.color?.name === "pink") {
-      return "#f0afed";
-    }
-    if (pokemonSpecies.color?.name === "purple") {
-      return "#be58ee";
-    }
-    if (pokemonSpecies.color?.name === "brown") {
-      return "#f47a2e";
-    }
-    if (pokemonSpecies.color?.name === "black") {
-      return "rgb(53, 47, 47)";
-    }
-    if (pokemonSpecies.color?.name === "white") {
-      return "rgb(227, 200, 200)";
-    }
-    if (pokemonSpecies.color?.name === "gray") {
-      return "rgb(168, 168, 168)";
-    }
-  };
-
   return (
     <>
       <Head>
@@ -85,14 +53,16 @@ export default function PokedexDynamic() {
         {pokemon && pokemonSpecies && (
           <div
             className={styles.Pokedex}
-            style={{ backgroundColor: colorBackPokemon() }}
+            style={{ backgroundColor: colorBackPokemon(pokemonSpecies) }}
           >
             <TopPagePokemon pokemon={pokemon} />
 
             <div
               className={styles.bottomSection}
               style={{
-                background: `linear-gradient(to top, ${colorBackPokemon()} 2%, rgb(255, 244, 244) 30%)`,
+                background: `linear-gradient(to top, ${colorBackPokemon(
+                  pokemonSpecies
+                )} 2%, rgb(255, 244, 244) 30%)`,
               }}
             >
               <nav className={styles.nav}>
@@ -105,7 +75,9 @@ export default function PokedexDynamic() {
                         actualTab === "About"
                           ? {
                               color: "black",
-                              borderBottom: `2px solid ${colorBackPokemon()}`,
+                              borderBottom: `2px solid ${colorBackPokemon(
+                                pokemonSpecies
+                              )}`,
                             }
                           : {}
                       }
@@ -120,7 +92,9 @@ export default function PokedexDynamic() {
                         actualTab === "BaseStats"
                           ? {
                               color: "black",
-                              borderBottom: `2px solid ${colorBackPokemon()}`,
+                              borderBottom: `2px solid ${colorBackPokemon(
+                                pokemonSpecies
+                              )}`,
                             }
                           : {}
                       }
@@ -135,7 +109,9 @@ export default function PokedexDynamic() {
                         actualTab === "Moves"
                           ? {
                               color: "black",
-                              borderBottom: `2px solid ${colorBackPokemon()}`,
+                              borderBottom: `2px solid ${colorBackPokemon(
+                                pokemonSpecies
+                              )}`,
                             }
                           : {}
                       }
