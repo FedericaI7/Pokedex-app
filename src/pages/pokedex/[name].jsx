@@ -145,6 +145,7 @@ export default function PokedexDynamic() {
                   </button>
                 </ul>
               </nav>
+              <p>{console.log(pokemonSpecies.color?.name)}</p>
               {actualTab === "About" && (
                 <About pokemon={pokemon} pokemonSpecies={pokemonSpecies} />
               )}

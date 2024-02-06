@@ -3,7 +3,6 @@ import styles from "../../styles/SearchPokedex.module.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { IoMenu } from "react-icons/io5";
-import { IoSearch } from "react-icons/io5";
 import Image from "next/image";
 
 export default function Pokedex({ pokemon }) {
@@ -11,11 +10,13 @@ export default function Pokedex({ pokemon }) {
   const router = useRouter();
   const [apiData, setApiData] = useState({});
 
-  useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/?limit=12").then((res) =>
-      res.json().then((data) => setApiData(data))
-    );
-  }, []);
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+  // useEffect(() => {
+  //   fetch("https://pokeapi.co/api/v2/pokemon/?limit=12").then((res) =>
+  //     res.json().then((data) => setApiData(data))
+  //   );
+  // }, []);
 
   const onHandleInput = (e) => {
     setValueInput(e.target.value.toLowerCase());
@@ -51,7 +52,6 @@ export default function Pokedex({ pokemon }) {
 
           <div className={styles.containerInput}>
             <form onSubmit={handleSubmit}>
-              {/* <IoSearch style={{ fontSize: "22px" }} /> */}
               <input
                 value={valueInput}
                 onChange={onHandleInput}
@@ -62,23 +62,16 @@ export default function Pokedex({ pokemon }) {
             </form>
           </div>
         </div>
-        <section>
-          <h1>
-            {apiData.results?.map((el) => (
-              <p>{el.name}</p>
-            ))}
-          </h1>
-          {/* <Image
-            className={styles.imgPokemon}
-            src={
-              pokemon.sprites &&
-              pokemon.sprites.other?.["official-artwork"]?.front_default
-            }
-            width={1000}
-            height={1000}
-            alt={pokemon.name + " picture"}
-          /> */}
-        </section>
+
+        {/* <h1>
+          {apiData.results?.map((el) => el.url)}
+          <p>
+            {console.log(
+              apiData.results?.map((el) => el.url.pokemon?.forms?.name)
+            )}
+          </p>
+        </h1> */}
+        
       </main>
     </>
   );
