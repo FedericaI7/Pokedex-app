@@ -1,11 +1,32 @@
 import styles from "../../styles/Pokedex.module.scss";
 import Image from "next/image";
+import { FaArrowLeft } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import Link from "next/link";
 
 const TopPagePokemon = ({ pokemon }) => {
   return (
     <>
-      <h1>{pokemon.name?.charAt(0).toUpperCase() + pokemon.name?.slice(1)}</h1>
+      <div className={styles.containerArrowTitleHeart}>
+        <Link href="/pokedex">
+          <FaArrowLeft
+            style={{ color: "var(--name-color)", fontSize: "20px" }}
+          />
+        </Link>
 
+        <h1>
+          {pokemon.name?.charAt(0).toUpperCase() + pokemon.name?.slice(1)}
+        </h1>
+
+        <FaRegHeart
+          style={{
+            color: "var(--name-color)",
+            fontSize: "20px",
+            cursor: "pointer",
+          }}
+        />
+      </div>
       {/* type */}
       <div className={styles.containerTypes}>
         {pokemon.types &&

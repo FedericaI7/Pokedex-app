@@ -1,14 +1,14 @@
 import styles from "../../styles/Pokedex.module.scss";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
-import Link from "next/link";
+
 import About from "@/components/about";
 import BaseStats from "@/components/baseStats";
 import Moves from "@/components/moves";
 import TopPagePokemon from "@/components/topPagePokemon";
 
-export default function Pokedex() {
+export default function PokedexDynamic() {
   const [pokemon, setPokemon] = useState({});
   const [pokemonSpecies, setPokemonSpecies] = useState({});
   const router = useRouter();
@@ -73,73 +73,87 @@ export default function Pokedex() {
   };
 
   return (
-    <div className={styles.containerPokedex}>
-      {pokemon && pokemonSpecies && (
-        <div
-          className={styles.Pokedex}
-          style={{ backgroundColor: colorBackPokemon() }}
-        >
-          <TopPagePokemon pokemon={pokemon} />
+    <>
+      <Head>
+        <title>Pokedex</title>
+        <meta name="description" content="Pokedex app" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/Pokeball_icon.png" />
+      </Head>
 
-          <div className={styles.bottomSection}>
-            <nav className={styles.nav}>
-              {/* ---UL NAV ------ ---------------------------------------- */}
-              <ul className={styles.navUl}>
-                <button onClick={() => onhandleBtn("About")}>
-                  <li
-                    className={styles.About}
-                    style={
-                      actualTab === "About"
-                        ? {
-                            color: "black",
-                            borderBottom: `2px solid ${colorBackPokemon()}`,
-                          }
-                        : {}
-                    }
-                  >
-                    About
-                  </li>
-                </button>
-                <button onClick={() => onhandleBtn("BaseStats")}>
-                  <li
-                    className={styles.BaseStats}
-                    style={
-                      actualTab === "BaseStats"
-                        ? {
-                            color: "black",
-                            borderBottom: `2px solid ${colorBackPokemon()}`,
-                          }
-                        : {}
-                    }
-                  >
-                    Base Stats
-                  </li>
-                </button>
-                <button onClick={() => onhandleBtn("Moves")}>
-                  <li
-                    className={styles.BaseStats}
-                    style={
-                      actualTab === "Moves"
-                        ? {
-                            color: "black",
-                            borderBottom: `2px solid ${colorBackPokemon()}`,
-                          }
-                        : {}
-                    }
-                  >
-                    Moves
-                  </li>
-                </button>
-              </ul>
-            </nav>
-            {actualTab === "About" && (
-              <About pokemon={pokemon} pokemonSpecies={pokemonSpecies} />
-            )}
-            {actualTab === "BaseStats" && <BaseStats pokemon={pokemon} />}
-            {actualTab === "Moves" && <Moves pokemon={pokemon} />}
+      <div className={styles.containerPokedex}>
+        {pokemon && pokemonSpecies && (
+          <div
+            className={styles.Pokedex}
+            style={{ backgroundColor: colorBackPokemon() }}
+          >
+            <TopPagePokemon pokemon={pokemon} />
+
+            <div
+              className={styles.bottomSection}
+              style={{
+                background: `linear-gradient(to top, ${colorBackPokemon()} 2%, rgb(255, 244, 244) 30%)`,
+              }}
+            >
+              <nav className={styles.nav}>
+                {/* ---UL NAV ------ ---------------------------------------- */}
+                <ul className={styles.navUl}>
+                  <button onClick={() => onhandleBtn("About")}>
+                    <li
+                      className={styles.About}
+                      style={
+                        actualTab === "About"
+                          ? {
+                              color: "black",
+                              borderBottom: `2px solid ${colorBackPokemon()}`,
+                            }
+                          : {}
+                      }
+                    >
+                      About
+                    </li>
+                  </button>
+                  <button onClick={() => onhandleBtn("BaseStats")}>
+                    <li
+                      className={styles.BaseStats}
+                      style={
+                        actualTab === "BaseStats"
+                          ? {
+                              color: "black",
+                              borderBottom: `2px solid ${colorBackPokemon()}`,
+                            }
+                          : {}
+                      }
+                    >
+                      Base Stats
+                    </li>
+                  </button>
+                  <button onClick={() => onhandleBtn("Moves")}>
+                    <li
+                      className={styles.Moves}
+                      style={
+                        actualTab === "Moves"
+                          ? {
+                              color: "black",
+                              borderBottom: `2px solid ${colorBackPokemon()}`,
+                            }
+                          : {}
+                      }
+                    >
+                      Moves
+                    </li>
+                  </button>
+                </ul>
+              </nav>
+              {actualTab === "About" && (
+                <About pokemon={pokemon} pokemonSpecies={pokemonSpecies} />
+              )}
+              {actualTab === "BaseStats" && <BaseStats pokemon={pokemon} />}
+              {actualTab === "Moves" && <Moves pokemon={pokemon} />}
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
