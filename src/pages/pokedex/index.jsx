@@ -9,14 +9,26 @@ export default function Pokedex({ pokemon }) {
   const [valueInput, setValueInput] = useState("");
   const router = useRouter();
   const [apiData, setApiData] = useState({});
+  const [pokemonData, setPokemonData] = useState([]);
 
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  useEffect(() => {
+    fetch("https://pokeapi.co/api/v2/pokemon/?limit=12").then((res) =>
+      res.json().then((data) => setApiData(data))
+    );
+  }, []);
 
-  // useEffect(() => {
-  //   fetch("https://pokeapi.co/api/v2/pokemon/?limit=12").then((res) =>
-  //     res.json().then((data) => setApiData(data))
-  //   );
-  // }, []);
+  useEffect(() => {
+    if (apiData.results && apiData.results.length > 0) {
+      Promise.all(
+        apiData.results.map(async (pokemon) => {
+          const response = await fetch(pokemon.url);
+          return response.json();
+        })
+      ).then((fetchedPokemonData) => {
+        setPokemonData(fetchedPokemonData);
+      });
+    }
+  }, [apiData]);
 
   const onHandleInput = (e) => {
     setValueInput(e.target.value.toLowerCase());
@@ -62,16 +74,23 @@ export default function Pokedex({ pokemon }) {
             </form>
           </div>
         </div>
-
-        {/* <h1>
-          {apiData.results?.map((el) => el.url)}
-          <p>
-            {console.log(
-              apiData.results?.map((el) => el.url.pokemon?.forms?.name)
-            )}
-          </p>
-        </h1> */}
-        
+        <section>
+          {pokemonData.map((pokemon, index) => (
+            <div key={index} className={styles.containerCardPokemongi}>
+              {pokemon.sprites && (
+                <div className={styles.cardPokemon}>
+                  <Image
+                    width={100}
+                    height={50}
+                    src={pokemon.sprites.other.dream_world.front_default}
+                    alt=""
+                  />
+                  <h3>{pokemon.name}</h3>
+                </div>
+              )}
+            </div>
+          ))}
+        </section>
       </main>
     </>
   );
