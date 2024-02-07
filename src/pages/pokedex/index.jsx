@@ -1,29 +1,43 @@
 import { useEffect, useState } from "react";
 import styles from "../../styles/SearchPokedex.module.scss";
-import styles2 from "@/styles/Pokedex.module.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { IoMenu } from "react-icons/io5";
 import Image from "next/image";
+import colorBackPokemon from "./colorBackPokemon";
 
 export default function Pokedex({ pokemon }) {
   const [valueInput, setValueInput] = useState("");
   const router = useRouter();
   const [apiData, setApiData] = useState({});
   const [pokemonData, setPokemonData] = useState([]);
+  const [pokemonSpecies, setPokemonSpecies] = useState({});
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/?limit=12").then((res) =>
+    fetch("https://pokeapi.co/api/v2/pokemon/?limit=9").then((res) =>
       res.json().then((data) => setApiData(data))
     );
   }, []);
+
+  fetch(
+    `https://pokeapi.co/api/v2/pokemon-species/${router.query.name}/?language_id=9`
+  )
+    .then((res) => res.json())
+    .then((data) => setPokemonSpecies(data));
 
   useEffect(() => {
     if (apiData.results && apiData.results.length > 0) {
       Promise.all(
         apiData.results.map(async (pokemon) => {
           const response = await fetch(pokemon.url);
-          return response.json();
+          const pokemonData = await response.json();
+
+          const speciesResponse = await fetch(
+            `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/?language_id=9`
+          );
+          const speciesData = await speciesResponse.json();
+
+          return { ...pokemonData, species: speciesData };
         })
       ).then((fetchedPokemonData) => {
         setPokemonData(fetchedPokemonData);
@@ -52,7 +66,18 @@ export default function Pokedex({ pokemon }) {
       <main className={styles.SearchPokedex}>
         <div className={styles.navSearchPokedex}>
           <div className={styles.titleAndMenu}>
-            <h1>What Pokemon are you looking for?</h1>
+            <div className={styles.leftNav}>
+              <h1>What Pokemon are you looking for?</h1>
+              <form onSubmit={handleSubmit} className={styles.containerInput}>
+                <input
+                  value={valueInput}
+                  onChange={onHandleInput}
+                  type="text"
+                  placeholder="Search your pokemon"
+                />
+                <button>Search</button>
+              </form>
+            </div>
 
             <IoMenu style={{ fontSize: "30px" }} />
             <Image
@@ -62,36 +87,53 @@ export default function Pokedex({ pokemon }) {
               src="/Pokeball.svg"
             ></Image>
           </div>
-
-          <div className={styles.containerInput}>
-            <form onSubmit={handleSubmit}>
-              <input
-                value={valueInput}
-                onChange={onHandleInput}
-                type="text"
-                placeholder="Search your pokemon"
-              />
-              <button>Search</button>
-            </form>
-          </div>
         </div>
-        <section>
-          {pokemonData.map((pokemon, index) => (
-            <div key={index} className={styles.containerCardPokemongi}>
-              {pokemon.sprites && (
-                <div className={styles2.Pokedex}>
-                  <Image
-                    width={100}
-                    height={50}
-                    src={pokemon.sprites.other.dream_world.front_default}
-                    alt={`image pokemon ${pokemon.name}`}
-                  />
-                  <h3>{pokemon.name}</h3>
+        <div className={styles.containerBottom}>
+          <section className={styles.sectionCard}>
+            {/* Card Section Pokemon  */}
+            {pokemonData.map((pokemon, index) => (
+              <div
+                key={index}
+                className={styles.cardPokemon}
+                style={{
+                  backgroundColor: colorBackPokemon(pokemon.species),
+                }}
+              >
+                <div className={styles.sdosndono}>
+                  {/* ----Number---- */}
+                  {
+                    <span className={styles.numberPokemon}>
+                      {"#" + pokemon.order}
+                    </span>
+                  }
+                  <h2>
+                    {/* ---Name---- */}
+                    {pokemon.name?.charAt(0).toUpperCase() +
+                      pokemon.name?.slice(1)}
+                  </h2>
+                  <div className={styles.containerTypes}>
+                    {/* ---Types---- */}
+                    {pokemon.types &&
+                      pokemon.types.map((el) => (
+                        <p className={styles.type} key={el.type.name}>
+                          {el.type.name}
+                        </p>
+                      ))}
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
-        </section>
+                {/* ----Image---- */}
+                <Image
+                  className={styles.imgPokemon}
+                  width={100}
+                  height={50}
+                  src={pokemon.sprites.other.dream_world.front_default}
+                  alt={`image pokemon ${pokemon.name}`}
+                />
+              </div>
+            ))}
+          </section>
+        </div>
+        ;
       </main>
     </>
   );
