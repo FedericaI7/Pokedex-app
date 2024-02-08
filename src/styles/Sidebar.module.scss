@@ -1,0 +1,38 @@
+.containerMenu {
+  max-width: 100%;
+  transition: width 0.3s ease-in;
+  z-index: 2;
+}
+
+.containerListItem {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  background-color: var(--text-g-color-dark);
+  right: 0;
+  width: 230px;
+  height: 500px;
+  padding-top: 30px;
+}
+
+.itemList {
+  cursor: pointer;
+  color: var(--name-color);
+  font-size: 18px;
+  font-weight: bold;
+
+  &:hover {
+    color: red;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .containerListItem {
+    width: 400px;
+    padding-left: 70px;
+  }
+}

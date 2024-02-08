@@ -1,0 +1,29 @@
+.navigationBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #f0f0f0;
+
+  h1 {
+    margin: 0;
+  }
+
+  .leftContent {
+    display: flex;
+    align-items: center;
+  }
+
+  .searchForm {
+    margin-left: 20px;
+  }
+
+  .rightContent {
+    display: flex;
+    align-items: center;
+  }
+
+  .menuIcon {
+    cursor: pointer;
+  }
+}

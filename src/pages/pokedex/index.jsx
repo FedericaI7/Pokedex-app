@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/SearchPokedex.module.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { IoMenu } from "react-icons/io5";
+
 import Image from "next/image";
 import colorBackPokemon from "./colorBackPokemon";
+import Sidebar from "@/components/sidebar";
 
-export default function Pokedex({ pokemon }) {
+export default function Pokedex() {
   const [valueInput, setValueInput] = useState("");
   const router = useRouter();
   const [apiData, setApiData] = useState({});
@@ -55,6 +56,11 @@ export default function Pokedex({ pokemon }) {
     router.push(`/pokedex/${valueInput}`);
   };
 
+  const showSettings = (event) => {
+    event.preventDefault();
+    console.log("ciao");
+  };
+
   return (
     <>
       <Head>
@@ -64,7 +70,7 @@ export default function Pokedex({ pokemon }) {
         <link rel="icon" href="/Pokeball_icon.png" />
       </Head>
       <main className={styles.SearchPokedex}>
-        <div className={styles.navSearchPokedex}>
+        <div className={styles.navSearchPokedex} id="outer-container">
           <div className={styles.titleAndMenu}>
             <div className={styles.leftNav}>
               <h1>What Pokemon are you looking for?</h1>
@@ -75,11 +81,12 @@ export default function Pokedex({ pokemon }) {
                   type="text"
                   placeholder="Search your pokemon"
                 />
-                <button>Search</button>
+                <button onClick={handleSubmit}>Search</button>
               </form>
             </div>
 
-            <IoMenu style={{ fontSize: "30px" }} />
+            <Sidebar />
+
             <Image
               width={500}
               height={500}
