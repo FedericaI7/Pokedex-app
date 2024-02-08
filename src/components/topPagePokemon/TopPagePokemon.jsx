@@ -8,10 +8,34 @@ import { useState } from "react";
 
 const TopPagePokemon = ({ pokemon }) => {
   const [isHeartClicked, setIsHeartClicked] = useState(false);
+  const [favorites, setFavorites] = useState([]);
+
+  // const onHandleHeart = () => {
+  //   setIsHeartClicked((prev) => !prev);
+  //   if (!isHeartClicked) {
+  //     setFavorites([...favorites, pokemon]);
+  //   } else {
+  //     setFavorites(favorites.filter((fav) => fav.id !== pokemon.id));
+  //   }
+  // };
 
   const onHandleHeart = () => {
     setIsHeartClicked((prev) => !prev);
+    const favoritesFromStorage =
+      JSON.parse(localStorage.getItem("favorites")) || [];
+
+    if (!isHeartClicked) {
+      const updatedFavorites = [...favoritesFromStorage, pokemon];
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    } else {
+      const updatedFavorites = favoritesFromStorage.filter(
+        (fav) => fav.id !== pokemon.id
+      );
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    }
   };
+
+  const imageSrc = pokemon.sprites?.other?.["official-artwork"]?.front_default;
 
   const iconHeart = isHeartClicked == true ? <FaHeart /> : <FaRegHeart />;
 
@@ -25,7 +49,9 @@ const TopPagePokemon = ({ pokemon }) => {
         </Link>
 
         <h1>
-          {pokemon.name?.charAt(0).toUpperCase() + pokemon.name?.slice(1)}
+          {pokemon.name
+            ? pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+            : "Nome non disponibile"}
         </h1>
         <div
           style={{
@@ -48,17 +74,30 @@ const TopPagePokemon = ({ pokemon }) => {
           ))}
       </div>
       <div className={styles.containerImgandNumber}>
-        <Image
+        {imageSrc ? (
+          <Image
+            className={styles.imgPokemon}
+            src={imageSrc}
+            width={1000}
+            height={1000}
+            alt={pokemon.name + " picture"}
+          />
+        ) : (
+          <p>Immagine non disponibile</p>
+        )}
+        {/* <Image
           className={styles.imgPokemon}
-          src={
-            pokemon.sprites &&
-            pokemon.sprites.other?.["official-artwork"]?.front_default
-          }
+          src={pokemon.sprites?.other?.["official-artwork"]?.front_default}
           width={1000}
           height={1000}
           alt={pokemon.name + " picture"}
-        />
-        <span>{"#" + pokemon.order}</span>
+        /> */}
+        <span>
+          {"#" +
+            (typeof pokemon.order === "number"
+              ? pokemon.order
+              : "Numero non disponibile")}
+        </span>
       </div>
     </>
   );

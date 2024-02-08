@@ -18,13 +18,12 @@ export default function Pokedex() {
     fetch("https://pokeapi.co/api/v2/pokemon/?limit=9").then((res) =>
       res.json().then((data) => setApiData(data))
     );
+    fetch(
+      `https://pokeapi.co/api/v2/pokemon-species/${router.query.name}/?language_id=9`
+    )
+      .then((res) => res.json())
+      .then((data) => setPokemonSpecies(data));
   }, []);
-
-  fetch(
-    `https://pokeapi.co/api/v2/pokemon-species/${router.query.name}/?language_id=9`
-  )
-    .then((res) => res.json())
-    .then((data) => setPokemonSpecies(data));
 
   useEffect(() => {
     if (apiData.results && apiData.results.length > 0) {
@@ -58,7 +57,6 @@ export default function Pokedex() {
 
   const showSettings = (event) => {
     event.preventDefault();
-    console.log("ciao");
   };
 
   return (
@@ -88,10 +86,12 @@ export default function Pokedex() {
             <Sidebar />
 
             <Image
-              width={500}
-              height={500}
+              width={75}
+              height={75}
               className={styles.backMenu}
               src="/Pokeball.svg"
+              alt="logo pokeball"
+              priority={true}
             ></Image>
           </div>
         </div>

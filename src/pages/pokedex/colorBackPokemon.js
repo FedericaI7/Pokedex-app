@@ -5,8 +5,7 @@ const colorBackPokemon = (pokemonSpecies) => {
 
   if (pokemonSpecies.color?.name === "green") {
     return "#48d0b0";
-  }
-  if (pokemonSpecies.color?.name === "yellow") {
+  } else if (pokemonSpecies.color?.name === "yellow") {
     return "#ffd970";
   }
   if (pokemonSpecies.color?.name === "red") {

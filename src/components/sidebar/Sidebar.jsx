@@ -46,7 +46,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className={styles.containerLink}>
-            <Link className={styles.itemList} href="">
+            <Link className={styles.itemList} href="/favorites">
               Our Products
             </Link>
           </li>

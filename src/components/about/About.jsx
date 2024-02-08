@@ -58,8 +58,8 @@ const About = ({ pokemon, pokemonSpecies }) => {
           <h5>Abilities:</h5>
         </div>
         <div className={styles.info}>
-          {pokemon.abilities?.map((el) => (
-            <p key={el.name}>{el.ability?.name}</p>
+          {pokemon.abilities?.map((el, index) => (
+            <p key={index}>{el.ability?.name}</p>
           ))}
         </div>
       </div>
