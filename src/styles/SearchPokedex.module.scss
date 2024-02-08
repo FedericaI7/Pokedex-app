@@ -40,10 +40,10 @@
 }
 
 .backMenu {
-  position: fixed;
+  position: absolute;
   top: 0;
-  left: 60%;
-  width: 120px;
+  right: 10px;
+  width: 190px;
   height: auto;
   z-index: 1;
   pointer-events: none;

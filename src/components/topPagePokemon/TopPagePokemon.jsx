@@ -4,8 +4,17 @@ import { FaArrowLeft } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import Link from "next/link";
+import { useState } from "react";
 
 const TopPagePokemon = ({ pokemon }) => {
+  const [isHeartClicked, setIsHeartClicked] = useState(false);
+
+  const onHandleHeart = () => {
+    setIsHeartClicked((prev) => !prev);
+  };
+
+  const iconHeart = isHeartClicked == true ? <FaHeart /> : <FaRegHeart />;
+
   return (
     <>
       <div className={styles.containerArrowTitleHeart}>
@@ -18,14 +27,16 @@ const TopPagePokemon = ({ pokemon }) => {
         <h1>
           {pokemon.name?.charAt(0).toUpperCase() + pokemon.name?.slice(1)}
         </h1>
-
-        <FaRegHeart
+        <div
           style={{
             color: "var(--name-color)",
             fontSize: "20px",
             cursor: "pointer",
           }}
-        />
+          onClick={onHandleHeart}
+        >
+          {iconHeart}
+        </div>
       </div>
       {/* type */}
       <div className={styles.containerTypes}>
