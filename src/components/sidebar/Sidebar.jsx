@@ -47,7 +47,7 @@ const Sidebar = () => {
           </li>
           <li className={styles.containerLink}>
             <Link className={styles.itemList} href="/favorites">
-              Our Products
+              Favorites
             </Link>
           </li>
         </ul>

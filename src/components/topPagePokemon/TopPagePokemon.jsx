@@ -5,39 +5,29 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import Link from "next/link";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const TopPagePokemon = ({ pokemon }) => {
-  const [isHeartClicked, setIsHeartClicked] = useState(false);
   const [favorites, setFavorites] = useState([]);
 
-  // const onHandleHeart = () => {
-  //   setIsHeartClicked((prev) => !prev);
-  //   if (!isHeartClicked) {
-  //     setFavorites([...favorites, pokemon]);
-  //   } else {
-  //     setFavorites(favorites.filter((fav) => fav.id !== pokemon.id));
-  //   }
-  // };
-
-  const onHandleHeart = () => {
-    setIsHeartClicked((prev) => !prev);
+  useEffect(() => {
     const favoritesFromStorage =
       JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavorites(favoritesFromStorage);
+  }, []);
 
-    if (!isHeartClicked) {
-      const updatedFavorites = [...favoritesFromStorage, pokemon];
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-    } else {
-      const updatedFavorites = favoritesFromStorage.filter(
-        (fav) => fav.id !== pokemon.id
-      );
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-    }
+  const isFavorite = favorites.some((fav) => fav.id === pokemon.id);
+
+  const toggleFavorite = () => {
+    const updatedFavorites = isFavorite
+      ? favorites.filter((fav) => fav.id !== pokemon.id)
+      : [...favorites, pokemon];
+
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
   const imageSrc = pokemon.sprites?.other?.["official-artwork"]?.front_default;
-
-  const iconHeart = isHeartClicked == true ? <FaHeart /> : <FaRegHeart />;
 
   return (
     <>
@@ -59,9 +49,9 @@ const TopPagePokemon = ({ pokemon }) => {
             fontSize: "20px",
             cursor: "pointer",
           }}
-          onClick={onHandleHeart}
+          onClick={toggleFavorite}
         >
-          {iconHeart}
+          {isFavorite ? <FaHeart /> : <FaRegHeart />}
         </div>
       </div>
       {/* type */}

@@ -68,7 +68,7 @@ export default function Pokedex() {
         <link rel="icon" href="/Pokeball_icon.png" />
       </Head>
       <main className={styles.SearchPokedex}>
-        <div className={styles.navSearchPokedex} id="outer-container">
+        <div className={styles.navSearchPokedex}>
           <div className={styles.titleAndMenu}>
             <div className={styles.leftNav}>
               <h1>What Pokemon are you looking for?</h1>
@@ -106,7 +106,7 @@ export default function Pokedex() {
                   backgroundColor: colorBackPokemon(pokemon.species),
                 }}
               >
-                <div className={styles.sdosndono}>
+                <div>
                   {/* ----Number---- */}
                   {
                     <span className={styles.numberPokemon}>
