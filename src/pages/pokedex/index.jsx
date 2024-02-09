@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "../../styles/SearchPokedex.module.scss";
+import { fetchPokemon, fetchPokemonSpecies } from "@/components/API/Api";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -12,38 +13,33 @@ export default function Pokedex() {
   const router = useRouter();
   const [apiData, setApiData] = useState({});
   const [pokemonData, setPokemonData] = useState([]);
-  const [pokemonSpecies, setPokemonSpecies] = useState({});
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/?limit=9").then((res) =>
-      res.json().then((data) => setApiData(data))
-    );
-    fetch(
-      `https://pokeapi.co/api/v2/pokemon-species/${router.query.name}/?language_id=9`
-    )
-      .then((res) => res.json())
-      .then((data) => setPokemonSpecies(data));
-  }, []);
+    const fetchData = async () => {
+      const limitNumberPokemon = "?limit=9";
+      const ninePokemon = await fetchPokemon(limitNumberPokemon);
+      setApiData(ninePokemon);
 
-  useEffect(() => {
-    if (apiData.results && apiData.results.length > 0) {
-      Promise.all(
-        apiData.results.map(async (pokemon) => {
-          const response = await fetch(pokemon.url);
-          const pokemonData = await response.json();
+      if (ninePokemon.results && ninePokemon.results.length > 0) {
+        const fetchedPokemonData = await Promise.all(
+          ninePokemon.results.map(async (pokemon) => {
+            const response = await fetch(pokemon.url);
+            const pokemonData = await response.json();
 
-          const speciesResponse = await fetch(
-            `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/?language_id=9`
-          );
-          const speciesData = await speciesResponse.json();
+            const speciesResponse = await fetch(
+              `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.name}/?language_id=9`
+            );
+            const speciesData = await speciesResponse.json();
 
-          return { ...pokemonData, species: speciesData };
-        })
-      ).then((fetchedPokemonData) => {
+            return { ...pokemonData, species: speciesData };
+          })
+        );
         setPokemonData(fetchedPokemonData);
-      });
-    }
-  }, [apiData]);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const onHandleInput = (e) => {
     setValueInput(e.target.value.toLowerCase());

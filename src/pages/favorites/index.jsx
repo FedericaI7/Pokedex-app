@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "@/styles/SearchPokedex.module.scss";
+
 import Image from "next/image";
 import Head from "next/head";
 import Sidebar from "@/components/sidebar";
