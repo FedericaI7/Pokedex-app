@@ -129,7 +129,7 @@
 }
 
 .cardPokemonFavorites {
-  background-color: var(--text-g-color-dark);
+  background-color: rgba(90, 159, 199, 0.637);
 }
 
 .imgPokemon {
@@ -138,8 +138,8 @@
   object-fit: cover;
 }
 
-.iconHeart {
-  width: 20px;
+.infoPokemon {
+  width: 40%;
 }
 
 .numberPokemon {

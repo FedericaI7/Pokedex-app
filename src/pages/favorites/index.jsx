@@ -91,11 +91,11 @@ export default function Favorites() {
           <section className={styles.sectionCard}>
             {favoritesFromStorage.map((pokemon, index) => (
               <div
-                onClick={() => onHandleclickCard(pokemon)}
                 key={index}
                 className={`${styles.cardPokemon} ${styles.cardPokemonFavorites}`}
               >
                 {/* //---heart icon-- */}
+
                 <span
                   className={styles.iconHeart}
                   onClick={() => toggleFavorite(pokemon)}
@@ -105,7 +105,7 @@ export default function Favorites() {
                   ) ? (
                     <FaHeart
                       style={{
-                        color: "white",
+                        color: "var(--name-color)",
                         fontSize: "20px",
                         cursor: "pointer",
                       }}
@@ -113,14 +113,20 @@ export default function Favorites() {
                   ) : (
                     <FaRegHeart
                       style={{
-                        color: "white",
+                        color: "var(--name-color)",
                         fontSize: "20px",
                         cursor: "pointer",
                       }}
                     />
                   )}
                 </span>
-                <div className={styles.infoPokemon}>
+
+                {/* ---//Info Pokemon--- */}
+                <div
+                  onClick={() => onHandleclickCard(pokemon)}
+                  style={{ cursor: "pointer" }}
+                  className={styles.infoPokemon}
+                >
                   {/* ----Number---- */}
                   {
                     <span className={styles.numberPokemon}>
@@ -142,8 +148,10 @@ export default function Favorites() {
                       ))}
                   </div>
                 </div>
-
+                {/* -----Image---- */}
                 <Image
+                  onClick={() => onHandleclickCard(pokemon)}
+                  style={{ cursor: "pointer" }}
                   className={styles.imgPokemon}
                   src={pokemon.sprites.other.dream_world.front_default}
                   width={1000}
