@@ -1,8 +1,8 @@
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { fetchPokemon, fetchPokemonSpecies } from "@/components/API/Api";
 import styles from "../../styles/Pokedex.module.scss";
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-
 import About from "@/components/about";
 import BaseStats from "@/components/baseStats";
 import Moves from "@/components/moves";
@@ -16,16 +16,15 @@ export default function PokedexDynamic() {
   const [actualTab, setActualTab] = useState("About");
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${router.query.name}`)
-      .then((res) => res.json())
-      .then((data) => setPokemon(data));
-  }, [router.query.name]);
-  useEffect(() => {
-    fetch(
-      `https://pokeapi.co/api/v2/pokemon-species/${router.query.name}/?language_id=9`
-    )
-      .then((res) => res.json())
-      .then((data) => setPokemonSpecies(data));
+    const fetchData = async () => {
+      const pokemonData = await fetchPokemon(router.query.name);
+      setPokemon(pokemonData);
+
+      const pokemonSpeciesData = await fetchPokemonSpecies(router.query.name);
+      setPokemonSpecies(pokemonSpeciesData);
+    };
+
+    fetchData();
   }, [router.query.name]);
 
   const onhandleBtn = (tab) => {
@@ -66,7 +65,6 @@ export default function PokedexDynamic() {
               }}
             >
               <nav className={styles.nav}>
-                {/* ---UL NAV ------ ---------------------------------------- */}
                 <ul className={styles.navUl}>
                   <button onClick={() => onhandleBtn("About")}>
                     <li
