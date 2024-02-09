@@ -151,7 +151,6 @@ export default function Favorites() {
             ))}
           </section>
         </div>
-        ;
       </main>
     </>
   );
