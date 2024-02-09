@@ -6,6 +6,7 @@ import Sidebar from "@/components/sidebar";
 import { useRouter } from "next/router";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Favorites() {
   const [favoritesFromStorage, setFavoritesFromStorage] = useState([]);
@@ -23,6 +24,10 @@ export default function Favorites() {
     e.preventDefault();
     setValueInput("");
     router.push(`/pokedex/${valueInput}`);
+  };
+
+  const onHandleclickCard = (pokemon) => {
+    router.push(`/pokedex/${pokemon.name}`);
   };
 
   const onHandleInput = (e) => {
@@ -86,11 +91,9 @@ export default function Favorites() {
           <section className={styles.sectionCard}>
             {favoritesFromStorage.map((pokemon, index) => (
               <div
+                onClick={() => onHandleclickCard(pokemon)}
                 key={index}
-                className={styles.cardPokemon}
-                style={{
-                  backgroundColor: "#fe0000",
-                }}
+                className={`${styles.cardPokemon} ${styles.cardPokemonFavorites}`}
               >
                 {/* //---heart icon-- */}
                 <span
