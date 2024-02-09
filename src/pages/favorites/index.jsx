@@ -3,8 +3,9 @@ import styles from "@/styles/SearchPokedex.module.scss";
 import Image from "next/image";
 import Head from "next/head";
 import Sidebar from "@/components/sidebar";
-import colorBackPokemon from "../pokedex/colorBackPokemon";
 import { useRouter } from "next/router";
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 export default function Favorites() {
   const [favoritesFromStorage, setFavoritesFromStorage] = useState([]);
@@ -26,6 +27,21 @@ export default function Favorites() {
 
   const onHandleInput = (e) => {
     setValueInput(e.target.value.toLowerCase());
+  };
+
+  const toggleFavorite = (pokemon) => {
+    let updatedFavorites;
+    if (favoritesFromStorage.filter((fav) => fav.id === pokemon.id)) {
+      updatedFavorites = favoritesFromStorage.filter(
+        (fav) => fav.id !== pokemon.id
+      );
+    } else {
+      updatedFavorites = [...favoritesFromStorage, pokemon];
+    }
+
+    setFavoritesFromStorage(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    console.log("Updated favorites:", updatedFavorites);
   };
 
   return (
@@ -73,10 +89,35 @@ export default function Favorites() {
                 key={index}
                 className={styles.cardPokemon}
                 style={{
-                  backgroundColor: colorBackPokemon(pokemon.species),
+                  backgroundColor: "#fe0000",
                 }}
               >
-                <div>
+                {/* //---heart icon-- */}
+                <span
+                  className={styles.iconHeart}
+                  onClick={() => toggleFavorite(pokemon)}
+                >
+                  {favoritesFromStorage.filter(
+                    (fav) => fav.id === pokemon.id
+                  ) ? (
+                    <FaHeart
+                      style={{
+                        color: "white",
+                        fontSize: "20px",
+                        cursor: "pointer",
+                      }}
+                    />
+                  ) : (
+                    <FaRegHeart
+                      style={{
+                        color: "white",
+                        fontSize: "20px",
+                        cursor: "pointer",
+                      }}
+                    />
+                  )}
+                </span>
+                <div className={styles.infoPokemon}>
                   {/* ----Number---- */}
                   {
                     <span className={styles.numberPokemon}>

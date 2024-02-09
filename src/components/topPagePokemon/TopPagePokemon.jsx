@@ -16,7 +16,8 @@ const TopPagePokemon = ({ pokemon }) => {
     setFavorites(favoritesFromStorage);
   }, []);
 
-  const isFavorite = favorites.some((fav) => fav.id === pokemon.id);
+  const isFavorite =
+    favorites.filter((fav) => fav.id === pokemon.id).length > 0;
 
   const toggleFavorite = () => {
     const updatedFavorites = isFavorite
@@ -75,13 +76,7 @@ const TopPagePokemon = ({ pokemon }) => {
         ) : (
           <p>Immagine non disponibile</p>
         )}
-        {/* <Image
-          className={styles.imgPokemon}
-          src={pokemon.sprites?.other?.["official-artwork"]?.front_default}
-          width={1000}
-          height={1000}
-          alt={pokemon.name + " picture"}
-        /> */}
+
         <span>
           {"#" +
             (typeof pokemon.order === "number"
