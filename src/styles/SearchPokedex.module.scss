@@ -8,7 +8,7 @@
   width: 100%;
   height: auto;
   background-color: #fe0000;
-  padding: 40px;
+  padding: 2.5rem;
   position: fixed;
 }
 
@@ -16,13 +16,13 @@
   max-width: 100%;
   display: flex;
   align-items: flex-start;
-  gap: 20px;
+  gap: 1.25rem;
   justify-content: space-between;
   width: 100%;
   z-index: 2;
 
   h1 {
-    font-size: 20px;
+    font-size: 1.25rem;
     z-index: 2;
     color: var(--name-color);
   }
@@ -42,8 +42,8 @@
 .backMenu {
   position: absolute;
   top: 0;
-  right: 40px;
-  width: 130px;
+  right: 2.5rem;
+  width: 8.125rem;
   height: auto;
   z-index: 1;
   pointer-events: none;
@@ -51,7 +51,7 @@
 }
 
 .containerSidebar {
-  width: 30px;
+  width: 1.875rem;
 }
 
 .containerInput {
@@ -59,14 +59,14 @@
   margin: 0;
   display: flex;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 1.25rem;
 
   input {
-    width: 240px;
+    width: 15rem;
     outline: none;
-    color: white;
-    height: 40px;
-    padding-left: 8px;
+    color: var(--name-color);
+    height: 2.5rem;
+    padding-left: 0.5rem;
     background-color: inherit;
     border: 1px solid var(--info-black);
     border-right: 0;
@@ -78,15 +78,15 @@
   }
 
   button {
-    height: 40px;
-    padding-left: 8px;
-    padding-right: 8px;
+    height: 2.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     cursor: pointer;
     background-color: inherit;
     border: 1px solid var(--info-black);
     font-weight: bold;
     color: var(--info-black);
-    font-size: 16px;
+    font-size: 1rem;
     border-left: 0;
     z-index: 2;
     border-radius: 0px 8px 8px 0;
@@ -97,13 +97,13 @@
 
 .sectionCard {
   overflow-y: auto;
-  padding-top: 220px;
-  padding-bottom: 20px;
+  padding-top: 13.75rem;
+  padding-bottom: 1.25rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 1.25rem;
   background-color: var(--name-color);
 }
 
@@ -111,20 +111,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 1.25rem;
   width: 100%;
-  gap: 30px;
+  gap: 1.875rem;
   background: url(/Pokeball.svg);
   object-fit: cover;
   background-repeat: no-repeat;
   background-position: (80%);
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   width: 90%;
 
   h2 {
     color: var(--name-color);
-    padding-bottom: 10px;
+    padding-bottom: 0.625rem;
   }
 }
 
@@ -133,7 +133,7 @@
 }
 
 .imgPokemon {
-  width: 90px;
+  width: 5.625rem;
   height: auto;
   object-fit: cover;
 }
@@ -154,7 +154,7 @@
   .type {
     padding: 0.375rem;
     border-radius: 0.625rem;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: bolder;
     color: rgb(75, 65, 65);
     background-color: rgba(202, 202, 202, 0.61);
@@ -172,7 +172,7 @@
     gap: 0;
 
     h1 {
-      font-size: 26px;
+      font-size: 1.625rem;
     }
   }
 
@@ -180,8 +180,8 @@
     justify-content: center;
 
     input {
-      width: 400px;
-      font-size: 18px;
+      width: 25rem;
+      font-size: 1.125rem;
     }
   }
 
@@ -191,7 +191,7 @@
   }
 
   .sectionCard {
-    padding-top: 60px;
+    padding-top: 3.75rem;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -199,7 +199,7 @@
     height: (100vh - 26vh);
   }
   .cardPokemon {
-    width: 400px;
+    width: 25rem;
     height: 24vh;
   }
 }
