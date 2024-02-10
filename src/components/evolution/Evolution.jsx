@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/Pokedex.module.scss";
 import { fetchPokemonSpecies, fetchPokemon } from "@/components/API/Api";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const Evolution = ({ pokemon }) => {
   const [pokemonSpecies, setPokemonSpecies] = useState({});
   const [evolutionData, setEvolutionData] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchDataSpecies = async () => {
@@ -57,15 +59,21 @@ const Evolution = ({ pokemon }) => {
     return evolutionDataArray;
   };
 
+  const onHandleclickCard = (pokemon) => {
+    router.push(`/pokedex/${pokemon.name}`);
+  };
+
   return (
     <div className={styles.containerInfoEvolution}>
       {evolutionData.map((pokemon, index) => (
         <div key={index} className={styles.evolutionInfo}>
           <p>{pokemon.name}</p>
           <Image
+            onClick={() => onHandleclickCard(pokemon)}
+            style={{ cursor: "pointer" }}
             className={styles.imgPokemon}
             src={pokemon.image}
-            alt={`image pokemon ${pokemon.name}`}
+            alt={`image pokemon ${pokemon}`}
             width={1000}
             height={100}
           />

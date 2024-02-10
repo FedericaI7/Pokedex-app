@@ -153,9 +153,12 @@ export default function Favorites() {
                   onClick={() => onHandleclickCard(pokemon)}
                   style={{ cursor: "pointer" }}
                   className={styles.imgPokemon}
-                  src={pokemon.sprites.other.dream_world.front_default}
-                  width={1000}
-                  height={1000}
+                  src={
+                    pokemon.sprites?.other?.dream_world?.front_default ||
+                    pokemon.sprites?.other?.["official-artwork"].front_default
+                  }
+                  width={500}
+                  height={500}
                   alt={pokemon.name + " picture"}
                 />
               </div>
