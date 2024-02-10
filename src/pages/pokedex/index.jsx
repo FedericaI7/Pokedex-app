@@ -105,6 +105,7 @@ export default function Pokedex() {
               className={styles.cardPokemon}
               style={{
                 backgroundColor: colorBackPokemon(pokemon.species),
+                cursor: "pointer",
               }}
             >
               <div>

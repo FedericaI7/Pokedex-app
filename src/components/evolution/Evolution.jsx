@@ -40,7 +40,10 @@ const Evolution = ({ pokemon }) => {
       evolutionDataArray.push({
         name: chain.species.name,
         url: chain.species.url,
-        image: pokemonData.sprites.other.dream_world.front_default,
+        image: pokemonData.sprites.other.showdown.front_default,
+        // image:
+        //   pokemonData.sprites.versions["generation-v"]["black-white"].animated
+        //     .front_default,
       });
 
       if (chain.evolves_to && chain.evolves_to.length > 0) {
@@ -55,15 +58,15 @@ const Evolution = ({ pokemon }) => {
   };
 
   return (
-    <div className={styles.containerInfo}>
+    <div className={styles.containerInfoEvolution}>
       {evolutionData.map((pokemon, index) => (
-        <div key={index}>
+        <div key={index} className={styles.evolutionInfo}>
           <p>{pokemon.name}</p>
           <Image
             className={styles.imgPokemon}
             src={pokemon.image}
             alt={`image pokemon ${pokemon.name}`}
-            width={100}
+            width={1000}
             height={100}
           />
         </div>
