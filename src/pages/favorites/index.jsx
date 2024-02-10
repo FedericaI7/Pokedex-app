@@ -7,7 +7,6 @@ import Sidebar from "@/components/sidebar";
 import { useRouter } from "next/router";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
-import Link from "next/link";
 
 export default function Favorites() {
   const [favoritesFromStorage, setFavoritesFromStorage] = useState([]);

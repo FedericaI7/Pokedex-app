@@ -8,6 +8,7 @@ import BaseStats from "@/components/baseStats";
 import Moves from "@/components/moves";
 import TopPagePokemon from "@/components/topPagePokemon";
 import colorBackPokemon from "./colorBackPokemon";
+import Evolution from "@/components/evolution";
 
 export default function PokedexDynamic() {
   const [pokemon, setPokemon] = useState({});
@@ -36,6 +37,9 @@ export default function PokedexDynamic() {
     }
     if (tab === "Moves") {
       setActualTab("Moves");
+    }
+    if (tab === "Evolution") {
+      setActualTab("Evolution");
     }
   };
 
@@ -117,6 +121,23 @@ export default function PokedexDynamic() {
                       Moves
                     </li>
                   </button>
+                  <button onClick={() => onhandleBtn("Evolution")}>
+                    <li
+                      className={styles.Moves}
+                      style={
+                        actualTab === "Evolution"
+                          ? {
+                              color: "black",
+                              borderBottom: `2px solid ${colorBackPokemon(
+                                pokemonSpecies
+                              )}`,
+                            }
+                          : {}
+                      }
+                    >
+                      Evolution
+                    </li>
+                  </button>
                 </ul>
               </nav>
 
@@ -125,6 +146,7 @@ export default function PokedexDynamic() {
               )}
               {actualTab === "BaseStats" && <BaseStats pokemon={pokemon} />}
               {actualTab === "Moves" && <Moves pokemon={pokemon} />}
+              {actualTab === "Evolution" && <Evolution pokemon={pokemon} />}
             </div>
           </div>
         )}

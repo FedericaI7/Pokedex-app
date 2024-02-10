@@ -27,7 +27,7 @@ export default function Pokedex() {
             const pokemonData = await response.json();
 
             const speciesResponse = await fetch(
-              `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.name}/?language_id=9`
+              `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/?language_id=9`
             );
             const speciesData = await speciesResponse.json();
 
@@ -49,6 +49,10 @@ export default function Pokedex() {
     e.preventDefault();
     setValueInput("");
     router.push(`/pokedex/${valueInput}`);
+  };
+
+  const onHandleclickCard = (pokemon) => {
+    router.push(`/pokedex/${pokemon}`);
   };
 
   const showSettings = (event) => {
@@ -96,6 +100,7 @@ export default function Pokedex() {
           {/* Card Section Pokemon  */}
           {pokemonData.map((pokemon, index) => (
             <div
+              onClick={() => onHandleclickCard(pokemon.name)}
               key={index}
               className={styles.cardPokemon}
               style={{
