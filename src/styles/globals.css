@@ -17,7 +17,6 @@ ul {
 
 :root {
   --name-color: rgb(253, 253, 253);
-  /* --text-g-color: rgba(158, 157, 157, 0.918); */
   --text-g-color: rgba(102, 95, 95, 0.918);
   --text-g-color-dark: rgba(114, 97, 97, 0.918);
   --info-black: rgb(63, 57, 57);

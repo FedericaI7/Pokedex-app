@@ -12,7 +12,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className={styles.containerMenu}>
+    <aside className={styles.containerMenu}>
       {isOpen ? (
         <IoClose
           onClick={toggleMenu}
@@ -52,7 +52,7 @@ const Sidebar = () => {
           </li>
         </ul>
       )}
-    </div>
+    </aside>
   );
 };
 

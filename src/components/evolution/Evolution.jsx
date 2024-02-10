@@ -64,7 +64,7 @@ const Evolution = ({ pokemon }) => {
   };
 
   return (
-    <div className={styles.containerInfoEvolution}>
+    <section className={styles.containerInfoEvolution}>
       {evolutionData.map((pokemon, index) => (
         <div key={index} className={styles.evolutionInfo}>
           <p>{pokemon.name}</p>
@@ -79,7 +79,7 @@ const Evolution = ({ pokemon }) => {
           />
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 

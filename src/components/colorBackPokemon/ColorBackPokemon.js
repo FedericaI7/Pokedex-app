@@ -1,4 +1,4 @@
-const colorBackPokemon = (pokemonSpecies) => {
+const ColorBackPokemon = (pokemonSpecies) => {
   if (!pokemonSpecies || !pokemonSpecies.color) {
     return "";
   }
@@ -34,4 +34,4 @@ const colorBackPokemon = (pokemonSpecies) => {
   }
 };
 
-export default colorBackPokemon;
+export default ColorBackPokemon;

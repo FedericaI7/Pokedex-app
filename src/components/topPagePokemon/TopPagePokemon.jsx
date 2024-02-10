@@ -1,11 +1,12 @@
 import styles from "../../styles/Pokedex.module.scss";
+import { useState } from "react";
+import { useEffect } from "react";
+
 import Image from "next/image";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import Link from "next/link";
-import { useState } from "react";
-import { useEffect } from "react";
 
 const TopPagePokemon = ({ pokemon }) => {
   const [favorites, setFavorites] = useState([]);
@@ -32,7 +33,7 @@ const TopPagePokemon = ({ pokemon }) => {
 
   return (
     <>
-      <div className={styles.containerArrowTitleHeart}>
+      <header className={styles.containerArrowTitleHeart}>
         <Link href="/pokedex">
           <FaArrowLeft
             style={{ color: "var(--name-color)", fontSize: "20px" }}
@@ -54,7 +55,7 @@ const TopPagePokemon = ({ pokemon }) => {
         >
           {isFavorite ? <FaHeart /> : <FaRegHeart />}
         </div>
-      </div>
+      </header>
       {/* type */}
       <div className={styles.containerTypes}>
         {pokemon.types &&
@@ -64,26 +65,28 @@ const TopPagePokemon = ({ pokemon }) => {
             </p>
           ))}
       </div>
-      <div className={styles.containerImgandNumber}>
-        {imageSrc ? (
-          <Image
-            className={styles.imgPokemon}
-            src={imageSrc}
-            width={1000}
-            height={1000}
-            alt={pokemon.name + " picture"}
-          />
-        ) : (
-          <p>Immagine non disponibile</p>
-        )}
+      <section>
+        <div className={styles.containerImgandNumber}>
+          {imageSrc ? (
+            <Image
+              className={styles.imgPokemon}
+              src={imageSrc}
+              width={1000}
+              height={1000}
+              alt={pokemon.name + " picture"}
+            />
+          ) : (
+            <p>Immagine non disponibile</p>
+          )}
 
-        <span>
-          {"#" +
-            (typeof pokemon.order === "number"
-              ? pokemon.order
-              : "Numero non disponibile")}
-        </span>
-      </div>
+          <span>
+            {"#" +
+              (typeof pokemon.order === "number"
+                ? pokemon.order
+                : "Numero non disponibile")}
+          </span>
+        </div>
+      </section>
     </>
   );
 };

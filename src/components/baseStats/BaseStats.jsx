@@ -9,7 +9,7 @@ const BaseStats = ({ pokemon }) => {
   });
 
   return (
-    <div className={styles.containerInfo}>
+    <section className={styles.containerInfo}>
       {pokemon.stats?.map((el) => (
         <div className={styles.data}>
           <div className={styles.containerName}>
@@ -31,7 +31,7 @@ const BaseStats = ({ pokemon }) => {
           <p>{totalBaseStats}</p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

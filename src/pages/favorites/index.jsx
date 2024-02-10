@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
 import styles from "@/styles/SearchPokedex.module.scss";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 import Image from "next/image";
 import Head from "next/head";
 import Sidebar from "@/components/sidebar";
-import { useRouter } from "next/router";
-import { FaRegHeart } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
 
 export default function Favorites() {
   const [favoritesFromStorage, setFavoritesFromStorage] = useState([]);
@@ -58,8 +58,8 @@ export default function Favorites() {
         <link rel="icon" href="/Pokeball_icon.png" />
       </Head>
 
-      <main className={styles.SearchPokedex}>
-        <div className={styles.navSearchPokedex}>
+      <header className={styles.SearchPokedex}>
+        <nav className={styles.navSearchPokedex}>
           <div className={styles.titleAndMenu}>
             <div className={styles.leftNav}>
               <h1>What Pokemon are you looking for?</h1>
@@ -86,85 +86,85 @@ export default function Favorites() {
               priority={true}
             />
           </div>
-        </div>
-        <div className={styles.containerBottom}>
-          <section className={styles.sectionCard}>
-            {favoritesFromStorage.map((pokemon, index) => (
-              <div
-                key={index}
-                className={`${styles.cardPokemon} ${styles.cardPokemonFavorites}`}
+        </nav>
+      </header>
+
+      {/* ----Section favorites--- */}
+      <main className={styles.containerBottom}>
+        <section className={styles.sectionCard}>
+          {favoritesFromStorage.map((pokemon, index) => (
+            <div
+              key={index}
+              className={`${styles.cardPokemon} ${styles.cardPokemonFavorites}`}
+            >
+              {/* //---heart icon-- */}
+
+              <span
+                className={styles.iconHeart}
+                onClick={() => toggleFavorite(pokemon)}
               >
-                {/* //---heart icon-- */}
+                {favoritesFromStorage.filter((fav) => fav.id === pokemon.id) ? (
+                  <FaHeart
+                    style={{
+                      color: "var(--name-color)",
+                      fontSize: "20px",
+                      cursor: "pointer",
+                    }}
+                  />
+                ) : (
+                  <FaRegHeart
+                    style={{
+                      color: "var(--name-color)",
+                      fontSize: "20px",
+                      cursor: "pointer",
+                    }}
+                  />
+                )}
+              </span>
 
-                <span
-                  className={styles.iconHeart}
-                  onClick={() => toggleFavorite(pokemon)}
-                >
-                  {favoritesFromStorage.filter(
-                    (fav) => fav.id === pokemon.id
-                  ) ? (
-                    <FaHeart
-                      style={{
-                        color: "var(--name-color)",
-                        fontSize: "20px",
-                        cursor: "pointer",
-                      }}
-                    />
-                  ) : (
-                    <FaRegHeart
-                      style={{
-                        color: "var(--name-color)",
-                        fontSize: "20px",
-                        cursor: "pointer",
-                      }}
-                    />
-                  )}
-                </span>
-
-                {/* ---//Info Pokemon--- */}
-                <div
-                  onClick={() => onHandleclickCard(pokemon)}
-                  style={{ cursor: "pointer" }}
-                  className={styles.infoPokemon}
-                >
-                  {/* ----Number---- */}
-                  {
-                    <span className={styles.numberPokemon}>
-                      {"#" + pokemon.order}
-                    </span>
-                  }
-                  <h2>
-                    {/* ---Name---- */}
-                    {pokemon.name?.charAt(0).toUpperCase() +
-                      pokemon.name?.slice(1)}
-                  </h2>
-                  <div className={styles.containerTypes}>
-                    {/* ---Types---- */}
-                    {pokemon.types &&
-                      pokemon.types.map((el) => (
-                        <p className={styles.type} key={el.type.name}>
-                          {el.type.name}
-                        </p>
-                      ))}
-                  </div>
+              {/* ---//Info Pokemon--- */}
+              <div
+                onClick={() => onHandleclickCard(pokemon)}
+                style={{ cursor: "pointer" }}
+                className={styles.infoPokemon}
+              >
+                {/* ----Number---- */}
+                {
+                  <span className={styles.numberPokemon}>
+                    {"#" + pokemon.order}
+                  </span>
+                }
+                <h2>
+                  {/* ---Name---- */}
+                  {pokemon.name?.charAt(0).toUpperCase() +
+                    pokemon.name?.slice(1)}
+                </h2>
+                <div className={styles.containerTypes}>
+                  {/* ---Types---- */}
+                  {pokemon.types &&
+                    pokemon.types.map((el) => (
+                      <p className={styles.type} key={el.type.name}>
+                        {el.type.name}
+                      </p>
+                    ))}
                 </div>
-                {/* -----Image---- */}
-                <Image
-                  onClick={() => onHandleclickCard(pokemon)}
-                  style={{ cursor: "pointer" }}
-                  className={styles.imgPokemon}
-                  src={
-                    pokemon.sprites?.other?.dream_world?.front_default ||
-                    pokemon.sprites?.other?.["official-artwork"].front_default
-                  }
-                  width={500}
-                  height={500}
-                  alt={pokemon.name + " picture"}
-                />
               </div>
-            ))}
-          </section>
-        </div>
+              {/* -----Image---- */}
+              <Image
+                onClick={() => onHandleclickCard(pokemon)}
+                style={{ cursor: "pointer" }}
+                className={styles.imgPokemon}
+                src={
+                  pokemon.sprites?.other?.dream_world?.front_default ||
+                  pokemon.sprites?.other?.["official-artwork"].front_default
+                }
+                width={500}
+                height={500}
+                alt={pokemon.name + " picture"}
+              />
+            </div>
+          ))}
+        </section>
       </main>
     </>
   );

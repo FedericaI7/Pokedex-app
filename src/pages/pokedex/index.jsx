@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
 import styles from "../../styles/SearchPokedex.module.scss";
-import { fetchPokemon, fetchPokemonSpecies } from "@/components/API/Api";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-
+import { fetchPokemon } from "@/components/API/Api";
 import Image from "next/image";
-import colorBackPokemon from "./colorBackPokemon";
+
+import ColorBackPokemon from "@/components/colorBackPokemon";
 import Sidebar from "@/components/sidebar";
 
 export default function Pokedex() {
@@ -67,8 +67,8 @@ export default function Pokedex() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Pokeball_icon.png" />
       </Head>
-      <main className={styles.SearchPokedex}>
-        <div className={styles.navSearchPokedex}>
+      <header className={styles.SearchPokedex}>
+        <nav className={styles.navSearchPokedex}>
           <div className={styles.titleAndMenu}>
             <div className={styles.leftNav}>
               <h1>What Pokemon are you looking for?</h1>
@@ -94,53 +94,52 @@ export default function Pokedex() {
               priority={true}
             ></Image>
           </div>
-        </div>
+        </nav>
+      </header>
 
-        <section className={styles.sectionCard}>
-          {/* Card Section Pokemon  */}
-          {pokemonData.map((pokemon, index) => (
-            <div
-              onClick={() => onHandleclickCard(pokemon.name)}
-              key={index}
-              className={styles.cardPokemon}
-              style={{
-                backgroundColor: colorBackPokemon(pokemon.species),
-                cursor: "pointer",
-              }}
-            >
-              <div>
-                {/* ----Number---- */}
-                {
-                  <span className={styles.numberPokemon}>
-                    {"#" + pokemon.order}
-                  </span>
-                }
-                <h2>
-                  {/* ---Name---- */}
-                  {pokemon.name?.charAt(0).toUpperCase() +
-                    pokemon.name?.slice(1)}
-                </h2>
-                <div className={styles.containerTypes}>
-                  {/* ---Types---- */}
-                  {pokemon.types &&
-                    pokemon.types.map((el) => (
-                      <p className={styles.type} key={el.type.name}>
-                        {el.type.name}
-                      </p>
-                    ))}
-                </div>
+      <main className={styles.sectionCard}>
+        {/* Card Section Pokemon  */}
+        {pokemonData.map((pokemon, index) => (
+          <div
+            onClick={() => onHandleclickCard(pokemon.name)}
+            key={index}
+            className={styles.cardPokemon}
+            style={{
+              backgroundColor: ColorBackPokemon(pokemon.species),
+              cursor: "pointer",
+            }}
+          >
+            <div>
+              {/* ----Number---- */}
+              {
+                <span className={styles.numberPokemon}>
+                  {"#" + pokemon.order}
+                </span>
+              }
+              <h2>
+                {/* ---Name---- */}
+                {pokemon.name?.charAt(0).toUpperCase() + pokemon.name?.slice(1)}
+              </h2>
+              <div className={styles.containerTypes}>
+                {/* ---Types---- */}
+                {pokemon.types &&
+                  pokemon.types.map((el) => (
+                    <p className={styles.type} key={el.type.name}>
+                      {el.type.name}
+                    </p>
+                  ))}
               </div>
-              {/* ----Image---- */}
-              <Image
-                className={styles.imgPokemon}
-                width={100}
-                height={50}
-                src={pokemon.sprites.other.dream_world.front_default}
-                alt={`image pokemon ${pokemon.name}`}
-              />
             </div>
-          ))}
-        </section>
+            {/* ----Image---- */}
+            <Image
+              className={styles.imgPokemon}
+              width={100}
+              height={50}
+              src={pokemon.sprites.other.dream_world.front_default}
+              alt={`image pokemon ${pokemon.name}`}
+            />
+          </div>
+        ))}
       </main>
     </>
   );

@@ -2,7 +2,7 @@ import styles from "../../styles/Pokedex.module.scss";
 
 const Moves = ({ pokemon }) => {
   return (
-    <div className={StyleSheet.containerInfo}>
+    <section className={StyleSheet.containerInfo}>
       <div className={styles.navMoves}>
         <div className={`${styles.containerName} ${styles.containerTitleNav} `}>
           <p>Moves</p>
@@ -28,7 +28,7 @@ const Moves = ({ pokemon }) => {
           </div>
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 
