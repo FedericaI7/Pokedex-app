@@ -50,6 +50,7 @@
 }
 
 .containerImgandNumber {
+  position: relative;
   display: flex;
   align-items: center;
   background-image: url("/Pokeball.svg");
@@ -188,12 +189,21 @@
   height: 100%;
   margin: 0;
   gap: 1.25rem;
+  pointer-events: none;
+  user-select: none;
   padding-top: 1.25rem;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 
   .imgPokemon {
     width: 6.25rem;
     max-width: 6.25rem;
     height: 5rem;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
     object-fit: contain;
   }
 
@@ -209,4 +219,28 @@
     color: var(--text-g-color);
     font-weight: 500;
   }
+}
+
+//hearts
+@keyframes heartAnimation {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.hearts {
+  position: absolute;
+  z-index: 5;
+  height: 0;
+  font-size: 100px;
+  color: pink;
+  top: 50%;
+  left: 30%;
+  -webkit-tap-highlight-color: transparent;
+  animation: heartAnimation 2s forwards;
 }

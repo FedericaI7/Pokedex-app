@@ -10,6 +10,7 @@ import Link from "next/link";
 
 const TopPagePokemon = ({ pokemon }) => {
   const [favorites, setFavorites] = useState([]);
+  const [hearts, setHearts] = useState(false);
 
   useEffect(() => {
     const favoritesFromStorage =
@@ -30,6 +31,12 @@ const TopPagePokemon = ({ pokemon }) => {
   };
 
   const imageSrc = pokemon.sprites?.other?.["official-artwork"]?.front_default;
+  const imgShiny = pokemon.sprites?.other?.["official-artwork"]?.front_shiny;
+
+  const onHandleHeart = () => {
+    setHearts((prev) => !prev);
+    setTimeout(() => setHearts(false), 5000);
+  };
 
   return (
     <>
@@ -67,10 +74,16 @@ const TopPagePokemon = ({ pokemon }) => {
       </div>
       <section>
         <div className={styles.containerImgandNumber}>
+          {hearts && (
+            <div className={styles.hearts}>
+              <FaHeart />
+            </div>
+          )}
           {imageSrc ? (
             <Image
+              onClick={onHandleHeart}
               className={styles.imgPokemon}
-              src={imageSrc}
+              src={hearts == true ? imgShiny : imageSrc}
               width={1000}
               height={1000}
               alt={pokemon.name + " picture"}
