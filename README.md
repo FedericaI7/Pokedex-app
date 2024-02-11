@@ -1,6 +1,6 @@
 # Pokédex App
 
-Welcome to the Pokédex App! This is a project built using React and Next.js. You can access the deployed version of the app [here](https://pokedex-app-roan.vercel.app).
+Welcome to the Pokédex App! This is a project built using Next.js. You can access the deployed version of the app [here](https://pokedex-app-roan.vercel.app).
 
 ## Features
 
