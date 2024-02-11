@@ -74,6 +74,7 @@ const TopPagePokemon = ({ pokemon }) => {
       </div>
       <section>
         <div className={styles.containerImgandNumber}>
+          {/* //---heart--- */}
           {hearts && (
             <div className={styles.hearts}>
               <FaHeart />

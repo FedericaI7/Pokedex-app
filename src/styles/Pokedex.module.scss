@@ -189,21 +189,12 @@
   height: 100%;
   margin: 0;
   gap: 1.25rem;
-  pointer-events: none;
-  user-select: none;
   padding-top: 1.25rem;
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
 
   .imgPokemon {
     width: 6.25rem;
     max-width: 6.25rem;
     height: 5rem;
-    pointer-events: none;
-    user-select: none;
-    -webkit-user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
     object-fit: contain;
   }
 
@@ -237,7 +228,7 @@
   position: absolute;
   z-index: 5;
   height: 0;
-  font-size: 100px;
+  font-size: 6.25rem;
   color: pink;
   top: 50%;
   left: 30%;
