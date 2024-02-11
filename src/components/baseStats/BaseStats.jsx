@@ -10,8 +10,8 @@ const BaseStats = ({ pokemon }) => {
 
   return (
     <section className={styles.containerInfo}>
-      {pokemon.stats?.map((el) => (
-        <div className={styles.data}>
+      {pokemon.stats?.map((el, index) => (
+        <div key={index} className={styles.data}>
           <div className={styles.containerName}>
             <h5>{el.stat.name}</h5>
           </div>

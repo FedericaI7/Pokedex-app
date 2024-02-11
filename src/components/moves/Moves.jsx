@@ -13,8 +13,8 @@ const Moves = ({ pokemon }) => {
         </div>
       </div>
 
-      {pokemon.moves?.map((el) => (
-        <div className={styles.navMoves}>
+      {pokemon.moves?.map((el, index) => (
+        <div key={index} className={styles.navMoves}>
           <div className={styles.containerName}>
             <h5>{el.move.name}</h5>
           </div>

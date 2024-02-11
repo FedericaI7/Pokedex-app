@@ -73,6 +73,7 @@ export default function PokedexDynamic() {
                 <ul className={styles.navUl}>
                   <button onClick={() => onhandleBtn("About")}>
                     <li
+                      key="about"
                       className={styles.About}
                       style={
                         actualTab === "About"
@@ -90,6 +91,7 @@ export default function PokedexDynamic() {
                   </button>
                   <button onClick={() => onhandleBtn("BaseStats")}>
                     <li
+                      key="baseStats"
                       className={styles.BaseStats}
                       style={
                         actualTab === "BaseStats"
@@ -107,6 +109,7 @@ export default function PokedexDynamic() {
                   </button>
                   <button onClick={() => onhandleBtn("Moves")}>
                     <li
+                      key="moves"
                       className={styles.Moves}
                       style={
                         actualTab === "Moves"
@@ -124,6 +127,7 @@ export default function PokedexDynamic() {
                   </button>
                   <button onClick={() => onhandleBtn("Evolution")}>
                     <li
+                      key="evolution"
                       className={styles.Moves}
                       style={
                         actualTab === "Evolution"
