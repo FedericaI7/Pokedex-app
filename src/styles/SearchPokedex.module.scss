@@ -203,3 +203,12 @@
     height: 24vh;
   }
 }
+
+//resultSuggestion
+
+.resultSuggestion {
+  &:hover {
+    background-color: var(--name-color);
+    cursor: pointer;
+  }
+}

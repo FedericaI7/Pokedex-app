@@ -13,6 +13,8 @@ export default function Pokedex() {
   const router = useRouter();
   const [apiData, setApiData] = useState({});
   const [pokemonData, setPokemonData] = useState([]);
+  const [allPokemonNames, setAllPokemonNames] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,16 +41,36 @@ export default function Pokedex() {
     };
 
     fetchData();
+    fetchAllPokemon();
   }, []);
+
+  const allPokemon = "?limit=100000&offset=0";
+  const fetchAllPokemon = async () => {
+    const allPokemonData = await fetchPokemon(allPokemon);
+    const allPokemonNames = allPokemonData.results.map(
+      (pokemon) => pokemon.name
+    );
+    setAllPokemonNames(allPokemonNames);
+  };
 
   const onHandleInput = (e) => {
     setValueInput(e.target.value.toLowerCase());
+    const suggestions = allPokemonNames
+      .filter((name) =>
+        name.toLowerCase().includes(e.target.value.toLowerCase())
+      )
+      .slice(0, 5);
+    setSuggestions(suggestions);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setValueInput("");
-    router.push(`/pokedex/${valueInput}`);
+
+    //search just the name that exists
+    if (allPokemonNames.includes(valueInput)) {
+      router.push(`/pokedex/${valueInput}`);
+    }
   };
 
   const onHandleclickCard = (pokemon) => {
@@ -81,6 +103,19 @@ export default function Pokedex() {
                 />
                 <button onClick={handleSubmit}>Search</button>
               </form>
+              {suggestions.length > 0 && (
+                <ul className={styles.suggestionsList}>
+                  {suggestions.map((suggestion, index) => (
+                    <li
+                      className={styles.resultSuggestion}
+                      key={index}
+                      onClick={() => setValueInput(suggestion)}
+                    >
+                      {suggestion}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
 
             <Sidebar />
