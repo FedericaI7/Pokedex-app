@@ -1,4 +1,3 @@
-import styles from "@/styles/SearchPokedex.module.scss";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { FaRegHeart } from "react-icons/fa";
@@ -7,18 +6,33 @@ import { FaHeart } from "react-icons/fa";
 import Image from "next/image";
 import Head from "next/head";
 import Sidebar from "@/components/sidebar";
+import styles from "@/styles/SearchPokedex.module.scss";
 
 export default function Favorites() {
-  const [favoritesFromStorage, setFavoritesFromStorage] = useState([]);
   const [valueInput, setValueInput] = useState("");
+  const [favoritesFromStorage, setFavoritesFromStorage] = useState([]);
+  const [allPokemonNames, setAllPokemonNames] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
       setFavoritesFromStorage(favorites);
+      fetchAllPokemon();
     }
   }, []);
+
+  const fetchAllPokemon = async () => {
+    const allPokemonData = await fetch(
+      "https://pokeapi.co/api/v2/pokemon?limit=1000"
+    );
+    const allPokemonJson = await allPokemonData.json();
+    const allPokemonNames = allPokemonJson.results.map(
+      (pokemon) => pokemon.name
+    );
+    setAllPokemonNames(allPokemonNames);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,11 +46,20 @@ export default function Favorites() {
 
   const onHandleInput = (e) => {
     setValueInput(e.target.value.toLowerCase());
+
+    const suggestions = allPokemonNames
+      .filter((name) =>
+        name.toLowerCase().includes(e.target.value.toLowerCase())
+      )
+      .slice(0, 5);
+    setSuggestions(suggestions);
   };
 
   const toggleFavorite = (pokemon) => {
     let updatedFavorites;
-    if (favoritesFromStorage.filter((fav) => fav.id === pokemon.id)) {
+    if (
+      favoritesFromStorage.filter((fav) => fav.id === pokemon.id).length > 0
+    ) {
       updatedFavorites = favoritesFromStorage.filter(
         (fav) => fav.id !== pokemon.id
       );
@@ -73,6 +96,20 @@ export default function Favorites() {
                 />
                 <button onClick={handleSubmit}>Search</button>
               </form>
+
+              {suggestions.length > 0 && (
+                <ul className={styles.suggestionsList}>
+                  {suggestions.map((suggestion, index) => (
+                    <li
+                      className={styles.resultSuggestion}
+                      key={index}
+                      onClick={() => setValueInput(suggestion)}
+                    >
+                      {suggestion}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
 
             <Sidebar />
@@ -89,7 +126,6 @@ export default function Favorites() {
         </nav>
       </header>
 
-      {/* ----Section favorites--- */}
       <main className={styles.containerBottom}>
         <section className={styles.sectionCard}>
           {favoritesFromStorage.map((pokemon, index) => (
@@ -97,13 +133,11 @@ export default function Favorites() {
               key={index}
               className={`${styles.cardPokemon} ${styles.cardPokemonFavorites}`}
             >
-              {/* //---heart icon-- */}
-
               <span
                 className={styles.iconHeart}
                 onClick={() => toggleFavorite(pokemon)}
               >
-                {favoritesFromStorage.filter((fav) => fav.id === pokemon.id) ? (
+                {favoritesFromStorage.some((fav) => fav.id === pokemon.id) ? (
                   <FaHeart
                     style={{
                       color: "var(--name-color)",
@@ -122,25 +156,19 @@ export default function Favorites() {
                 )}
               </span>
 
-              {/* ---//Info Pokemon--- */}
               <div
                 onClick={() => onHandleclickCard(pokemon)}
                 style={{ cursor: "pointer" }}
                 className={styles.infoPokemon}
               >
-                {/* ----Number---- */}
-                {
-                  <span className={styles.numberPokemon}>
-                    {"#" + pokemon.order}
-                  </span>
-                }
+                <span className={styles.numberPokemon}>
+                  {"#" + pokemon.order}
+                </span>
                 <h2>
-                  {/* ---Name---- */}
                   {pokemon.name?.charAt(0).toUpperCase() +
                     pokemon.name?.slice(1)}
                 </h2>
                 <div className={styles.containerTypes}>
-                  {/* ---Types---- */}
                   {pokemon.types &&
                     pokemon.types.map((el) => (
                       <p className={styles.type} key={el.type.name}>
@@ -149,7 +177,7 @@ export default function Favorites() {
                     ))}
                 </div>
               </div>
-              {/* -----Image---- */}
+
               <Image
                 onClick={() => onHandleclickCard(pokemon)}
                 style={{ cursor: "pointer" }}
