@@ -5,9 +5,7 @@ Welcome to the Pokédex App! This is a project built using Next.js. You can acce
 
 
 
-<p align="center">
-    <img src="https://github.com/FedericaI7/Pokedex-app/assets/125682865/9bf32190-02c8-42f4-a3d2-3b22964d19a9"></img>
-</p>
+
 
 
 ## Features
