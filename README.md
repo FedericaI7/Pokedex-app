@@ -2,6 +2,14 @@
 
 Welcome to the Pokédex App! This is a project built using Next.js. You can access the deployed version of the app [here](https://pokedex-app-roan.vercel.app).
 
+
+
+
+<p align="center">
+    <img src="https://github.com/FedericaI7/Pokedex-app/assets/125682865/9bf32190-02c8-42f4-a3d2-3b22964d19a9"></img>
+</p>
+
+
 ## Features
 
 - **Search Pokémon:** Easily search for your favorite Pokémon by name.
@@ -10,6 +18,19 @@ Welcome to the Pokédex App! This is a project built using Next.js. You can acce
 - **View Pokémon Details:** Get detailed information about each Pokémon including description, type, moves, evolutions, and stats such as attack, defense, speed, and HP.
 - **Responsive Design:** The app is designed to work seamlessly on various screen sizes.
 - **Express Affection:** Click on a Pokémon to show some love and see it transform into its shiny version for a few seconds.
+
+
+
+
+https://github.com/FedericaI7/Pokedex-app/assets/125682865/55d7a0ce-e9c0-4ed7-ba67-034f634f894b
+
+
+https://github.com/FedericaI7/Pokedex-app/assets/125682865/6214120a-a868-45f1-9cd7-159cfa50e8b6
+
+
+https://github.com/FedericaI7/Pokedex-app/assets/125682865/e037f910-8e5c-4a40-8740-875ce8ccf5ec
+
+
 
 ## Technologies Used
 
