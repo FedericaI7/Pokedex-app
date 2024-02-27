@@ -26,7 +26,7 @@ https://github.com/FedericaI7/Pokedex-app/assets/125682865/55d7a0ce-e9c0-4ed7-ba
 https://github.com/FedericaI7/Pokedex-app/assets/125682865/6214120a-a868-45f1-9cd7-159cfa50e8b6
 
 
-https://github.com/FedericaI7/Pokedex-app/assets/125682865/e037f910-8e5c-4a40-8740-875ce8ccf5ec
+
 
 
 
