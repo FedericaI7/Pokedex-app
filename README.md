@@ -3,6 +3,7 @@
 Welcome to the Pokédex App! This is a project built using Next.js. You can access the deployed version of the app [here](https://pokedex-app-roan.vercel.app).
 
 
+<img align="center" src="https://github.com/FedericaI7/Pokedex-app/assets/125682865/34e83d4c-5eb6-4dc9-9399-7839ca057a75"></img>
 
 
 
@@ -26,6 +27,10 @@ https://github.com/FedericaI7/Pokedex-app/assets/125682865/55d7a0ce-e9c0-4ed7-ba
 https://github.com/FedericaI7/Pokedex-app/assets/125682865/6214120a-a868-45f1-9cd7-159cfa50e8b6
 
 
+
+
+
+https://github.com/FedericaI7/Pokedex-app/assets/125682865/f574e93b-c56b-4fb8-b276-d91be7097451
 
 
 
